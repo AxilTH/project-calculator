@@ -98,9 +98,14 @@ document.querySelector('.buttons').onclick = (event) => {
             resultElement.textContent = secondOperand;
             return;
         } // if the second value is any number
-          else if (secondOperand !== '' && firstOperand !== ''){
+          else if (secondOperand !== '' && firstOperand !== '' && !finish){
             secondOperand = -secondOperand;
             resultElement.textContent = secondOperand;
+            return;
+        } // if we change the sign of result
+          else {
+            firstOperand = -firstOperand;
+            resultElement.textContent = firstOperand;
             return;
         }
     }
