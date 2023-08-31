@@ -4,6 +4,7 @@ let firstOperand = '0',  // first operand
     finish = false;     // calculation completed or not
 
 const arrOfDigits = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
+const digitsSecond = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const arrOfSigns = ['-', '+', 'X', '/', '%'];
 
 const resultElement = document.querySelector('.calc-screen p');
@@ -32,6 +33,13 @@ document.querySelector('.buttons').onclick = (event) => {
     // get pressed button
     const key = event.target.textContent;
 
+    // number limit "0" in front of number
+    if (firstOperand === '0' && digitsSecond.includes(key)) {
+        firstOperand = '';
+    }
+    if (secondOperand === '0' && digitsSecond.includes(key)) {
+        secondOperand = '';
+    }
     // if the button is a number or '.'
     if (arrOfDigits.includes(key)) {
         // enter the first value
