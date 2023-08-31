@@ -1,4 +1,4 @@
-let firstOperand = '',  // first operand
+let firstOperand = '0',  // first operand
     secondOperand = '', // second operand
     sign = '',          // sign
     finish = false;     // calculation completed or not
@@ -56,6 +56,45 @@ document.querySelector('.buttons').onclick = (event) => {
         sign = key;
         console.log(firstOperand, secondOperand, sign);
         resultElement.textContent = sign;
+        return;
+    }
+    // if the button is a '+/-'
+    if (key === '+/-') {
+        // if the first value is '0' or '-0'
+        if (firstOperand === '0' || firstOperand === '-0') {
+            firstOperand = resultElement.textContent;
+            if (firstOperand === '0') {
+                firstOperand = '-0';
+                resultElement.textContent = firstOperand;
+            } else if (firstOperand === '-0') {
+                firstOperand = '0'
+                resultElement.textContent = firstOperand;
+            }
+            resultElement.textContent = firstOperand;
+            return;
+        } // if the first value is any number
+          else if (firstOperand !== '' && secondOperand === '') {
+            firstOperand = -firstOperand;
+            resultElement.textContent = firstOperand;
+            return;
+        } // if the second value is '0' or '-0'
+          else if (secondOperand === '0' || secondOperand === '-0') {
+            secondOperand = resultElement.textContent;
+            if (secondOperand === '0') {
+                secondOperand = '-0';
+                resultElement.text = secondOperand;
+            } else if (secondOperand === '-0') {
+                secondOperand = '0';
+                resultElement.textContent = secondOperand;
+            }
+            resultElement.textContent = secondOperand;
+            return;
+        } // if the second value is any number
+          else {
+            secondOperand = -secondOperand;
+            resultElement.textContent = secondOperand;
+            return;
+        }
     }
     // if the button is a '='
     if (key === '=') {
