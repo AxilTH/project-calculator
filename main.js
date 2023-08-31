@@ -1,4 +1,4 @@
-let firstOperand = '0',  // first operand
+let firstOperand = '',  // first operand
     secondOperand = '', // second operand
     sign = '',          // sign
     finish = false;     // calculation completed or not
@@ -14,7 +14,7 @@ let clearAll = () => {
     secondOperand = '';
     sign = '';
     finish = false;
-    resultElement.textContent = '0';
+    resultElement.textContent = '';
 }
 
 // the button 'ac' was pressed
@@ -98,7 +98,7 @@ document.querySelector('.buttons').onclick = (event) => {
             resultElement.textContent = secondOperand;
             return;
         } // if the second value is any number
-          else {
+          else if (secondOperand !== '' && firstOperand !== ''){
             secondOperand = -secondOperand;
             resultElement.textContent = secondOperand;
             return;
