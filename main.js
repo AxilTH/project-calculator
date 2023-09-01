@@ -61,6 +61,20 @@ document.querySelector('.buttons').onclick = (event) => {
     }
     // if the button is a sign
     if (arrOfSigns.includes(key)) {
+        if (key === '%') {
+            if (sign === '' && secondOperand === '') {
+                firstOperand = firstOperand + '%';
+                resultElement.textContent = firstOperand;
+                firstOperand = firstOperand.slice(0, -1) / 100;
+                return;
+            }
+            if (sign !== '' && secondOperand !== '') {
+                secondOperand = secondOperand + '%';
+                resultElement.textContent = secondOperand;
+                secondOperand = secondOperand.slice(0, -1) / 100 * firstOperand;
+                return;
+            }
+        }
         sign = key;
         console.log(firstOperand, secondOperand, sign);
         resultElement.textContent = sign;
