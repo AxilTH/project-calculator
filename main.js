@@ -44,8 +44,13 @@ document.querySelector('.buttons').onclick = (event) => {
     if (arrOfDigits.includes(key)) {
         // enter the first value
         if (secondOperand === '' && sign === '') {
-            firstOperand += key;
-            resultElement.textContent = firstOperand;
+            if (key === '.' && firstOperand.includes('.')) {
+                firstOperand += '';
+                resultElement.textContent = firstOperand;
+            } else {
+                firstOperand += key;
+                resultElement.textContent = firstOperand;
+            }
         } // enter the second value (if the result is calculated)
           else if (firstOperand !== '' && secondOperand !== '' && finish) {
           secondOperand = key;
@@ -53,14 +58,20 @@ document.querySelector('.buttons').onclick = (event) => {
           resultElement.textContent = secondOperand;
         } // enter the second value (if the result isn't calculated)
           else {
-            secondOperand += key;
-            resultElement.textContent = secondOperand;
+            if (key === '.' && secondOperand.includes('.')) {
+                secondOperand += '';
+                resultElement.textContent = secondOperand;
+            } else {
+                secondOperand += key;
+                resultElement.textContent = secondOperand;
+            }
         }
         console.log(firstOperand, secondOperand, sign);
         return;
     }
     // if the button is a sign
     if (arrOfSigns.includes(key)) {
+        // if the button is a '%'
         if (key === '%') {
             if (sign === '' && secondOperand === '') {
                 firstOperand = firstOperand + '%';
